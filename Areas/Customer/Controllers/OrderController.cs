@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using OnlineShop.Data;
 using OnlineShop.Models;
 using OnlineShop.Utility;
+using OnlineShopApp.Data;
+using OnlineShopApp.Models;
 
 namespace OnlineShop.Areas.Customer.Controllers
 {
@@ -28,9 +29,8 @@ namespace OnlineShop.Areas.Customer.Controllers
       
         //POST Checkout action method
 
-        [HttpPost]
         [ValidateAntiForgeryToken]
-
+        [HttpPost]
         public async Task<IActionResult> Checkout(Order anOrder)
         {
             List<Products> products = HttpContext.Session.Get<List<Products>>("products");
@@ -48,6 +48,11 @@ namespace OnlineShop.Areas.Customer.Controllers
             _db.Orders.Add(anOrder);
             await _db.SaveChangesAsync();
             HttpContext.Session.Set("products", new List<Products>());
+            return View();
+        }
+
+        public IActionResult OrderForm()
+        {
             return View();
         }
 

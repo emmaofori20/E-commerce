@@ -4,26 +4,52 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using OnlineShop.Data;
+using OnlineShopApp.Data;
 using OnlineShop.Models;
+using OnlineShopApp.Areas.Customer.ViewModel;
 
 namespace OnlineShop.Areas.Customer.Controllers
 {
     [Area("Customer")]
     public class UserController : Controller
     {
-        UserManager<IdentityUser> _userManager;
+        UserManager<ApplicationUser> _userManager;
+        SignInManager<ApplicationUser> _signInManager;
         ApplicationDbContext _db;
-        public UserController(UserManager<IdentityUser>userManager,ApplicationDbContext db)
+        public UserController(UserManager<ApplicationUser>userManager,ApplicationDbContext db, SignInManager<ApplicationUser>signInManager)
         {
             _userManager = userManager;
             _db = db;
+            _signInManager = signInManager;
         }
         public IActionResult Index()
         {
             var dd = _userManager.GetUserId(HttpContext.User);
             return View(_db.ApplicationUsers.ToList());
         }
+
+        public async Task<IActionResult> Login()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Login(LoginViewModel user)
+        {
+            if (ModelState.IsValid)
+            {
+                var result = await _signInManager.PasswordSignInAsync(user.Email, user.Password,user.RememberMe, false);
+
+                if (result.Succeeded)
+                {
+                    return RedirectToAction(nameof(Index));
+
+                }
+                ModelState.AddModelError("","Invalid Login Attempt");
+            }
+            return View(user);
+        }
+
 
         public async Task<IActionResult>Create()
         {
@@ -38,6 +64,7 @@ namespace OnlineShop.Areas.Customer.Controllers
                 var result = await _userManager.CreateAsync(user, user.PasswordHash);
                 if (result.Succeeded)
                 {
+                    var res = _signInManager.SignInAsync(user, isPersistent: false );
                     var isSaveRole = await _userManager.AddToRoleAsync(user, "User");
                     TempData["save"] = "User has been created successfully";
                     return RedirectToAction(nameof(Index));

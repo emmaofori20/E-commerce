@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using OnlineShop.Data;
 using OnlineShop.Models;
 using OnlineShop.Utility;
-using X.PagedList;
+using OnlineShopApp.Data;
+using OnlineShopApp.Models;
 
 namespace OnlineShop.Controllers
 {
@@ -27,10 +27,19 @@ namespace OnlineShop.Controllers
        
         public IActionResult Index(int? page)
         {
-            return View(_db.Products.Include(c=>c.ProductTypes).Include(c=>c.SpecialTag).ToList().ToPagedList(page??1,9));
+            return View(_db.Products.Include(c=>c.ProductTypes).Include(c=>c.SpecialTag).ToList());
         }
 
         public IActionResult Privacy()
+        {
+            return View();
+        }
+
+        public IActionResult AboutUs() 
+        {
+            return View();
+        }
+        public IActionResult ContactUs()
         {
             return View();
         }

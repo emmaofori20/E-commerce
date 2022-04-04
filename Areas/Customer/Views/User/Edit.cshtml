@@ -1,4 +1,6 @@
 ﻿@model OnlineShop.Models.ApplicationUser
+@using OnlineShopApp.Models
+
 @{
     ViewData["Title"] = "Edit";
 }
@@ -10,7 +12,7 @@
         <div asp-validation-summary="ModelOnly" class="text-danger">
 
         </div>
-        <input  type="hidden" asp-for="Id" value="@Model.Id"/>
+        <input type="hidden" asp-for="Id" value="@Model.Id" />
         <h3>@ViewBag.message</h3>
         <div class="form-group row">
             <div class="col-2">
@@ -21,7 +23,7 @@
             </div>
             <span asp-validation-for="UserName" class="text-danger"></span>
         </div>
-        
+
         <div class="form-group row">
             <div class="col-2">
                 <label asp-for="FirstName"></label>
@@ -52,23 +54,23 @@
     @{ await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 
     <script>
-    $(document).ready(function () {
-        $("#user-form").validate({
-    rules: {
-      UserName : {
-        required: true,
-             },
-      PasswordHash : {
-        required: true,
-             }
-            },
-            messages: {
-                UserName: "Enter your email",
-PasswordHash:"Enter your password"
-            }
+        $(document).ready(function () {
+            $("#user-form").validate({
+                rules: {
+                    UserName: {
+                        required: true,
+                    },
+                    PasswordHash: {
+                        required: true,
+                    }
+                },
+                messages: {
+                    UserName: "Enter your email",
+                    PasswordHash: "Enter your password"
+                }
 
-  });
-    });
+            });
+        });
     </script>
 }
 

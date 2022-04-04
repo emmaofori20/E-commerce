@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "H:\\OnlineShopApp\\OnlineShopApp.csproj": {}
+    "C:\\Users\\AMPONSAH\\Desktop\\ecommerce\\New folder\\OnlineShopApp.csproj": {}
   },
   "projects": {
-    "H:\\OnlineShopApp\\OnlineShopApp.csproj": {
+    "C:\\Users\\AMPONSAH\\Desktop\\ecommerce\\New folder\\OnlineShopApp.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "H:\\OnlineShopApp\\OnlineShopApp.csproj",
+        "projectUniqueName": "C:\\Users\\AMPONSAH\\Desktop\\ecommerce\\New folder\\OnlineShopApp.csproj",
         "projectName": "OnlineShopApp",
-        "projectPath": "H:\\OnlineShopApp\\OnlineShopApp.csproj",
-        "packagesPath": "C:\\Users\\Md Shabuj Hossain\\.nuget\\packages\\",
-        "outputPath": "H:\\OnlineShopApp\\obj\\",
+        "projectPath": "C:\\Users\\AMPONSAH\\Desktop\\ecommerce\\New folder\\OnlineShopApp.csproj",
+        "packagesPath": "C:\\Users\\AMPONSAH\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\AMPONSAH\\Desktop\\ecommerce\\New folder\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Md Shabuj Hossain\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\AMPONSAH\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -26,6 +26,7 @@
         },
         "frameworks": {
           "netcoreapp3.1": {
+            "targetAlias": "netcoreapp3.1",
             "projectReferences": {}
           }
         },
@@ -37,6 +38,7 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
+          "targetAlias": "netcoreapp3.1",
           "dependencies": {
             "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore": {
               "target": "Package",
@@ -50,6 +52,10 @@
               "target": "Package",
               "version": "[3.1.1, )"
             },
+            "Microsoft.AspNetCore.Session": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
             "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
               "version": "[3.1.1, )"
@@ -60,7 +66,19 @@
             },
             "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
               "target": "Package",
-              "version": "[3.1.4, )"
+              "version": "[3.1.5, )"
+            },
+            "X.PagedList": {
+              "target": "Package",
+              "version": "[8.1.0, )"
+            },
+            "X.PagedList.Mvc": {
+              "target": "Package",
+              "version": "[8.0.7, )"
+            },
+            "X.PagedList.Mvc.Core": {
+              "target": "Package",
+              "version": "[8.1.0, )"
             }
           },
           "imports": [
@@ -81,7 +99,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.101\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.406\\RuntimeIdentifierGraph.json"
         }
       }
     }

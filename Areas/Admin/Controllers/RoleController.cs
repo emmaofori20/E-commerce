@@ -6,7 +6,8 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using OnlineShop.Areas.Admin.Models;
-using OnlineShop.Data;
+using OnlineShop.Models;
+using OnlineShopApp.Data;
 
 namespace OnlineShop.Areas.Admin.Controllers
 {
@@ -14,9 +15,9 @@ namespace OnlineShop.Areas.Admin.Controllers
     public class RoleController : Controller
     {
         RoleManager<IdentityRole> _roleManager;
-        UserManager<IdentityUser> _userManager;
+        UserManager<ApplicationUser> _userManager;
         ApplicationDbContext _db;
-        public RoleController(RoleManager<IdentityRole>roleManager,ApplicationDbContext db, UserManager<IdentityUser> userManager)
+        public RoleController(RoleManager<IdentityRole>roleManager,ApplicationDbContext db, UserManager<ApplicationUser> userManager)
         {
             _roleManager = roleManager;
             _db = db;

@@ -1,36 +1,147 @@
-﻿@using OnlineShop.Models;
+﻿@using OnlineShopApp.Models;
 @using X.PagedList.Mvc.Common
 @using X.PagedList.Mvc.Core
-@model X.PagedList.IPagedList<Products>
+@model List<Products>
 @{
     ViewData["Title"] = "Home Page";
 }
-<br/><br/>
-<div class="row">
-    @foreach (var product in Model)
-    {
-        <div class="col-4">
-            <div class="card mb-4">
-                <div class="card-header">
-                    <h4 class="my-0 font-weight-normal">
-                        <label style="font-size: 23px;color: steelblue">@product.Name</label>
-                    </h4>
-                </div>
-                <img src="~/@product.Image" alt="Card Image" class="card-img-top" style="height: 300px;"/>
-                <div class="card-header">
-                    <div class="d-flex justify-content-between align-items-center">
-                        <div class="btn-group">
-                            <label style="font-size: 20px;color: #a51313"><b>Price : @product.Price</b></label>
-                        </div>
-                        <a asp-action="Detail" asp-controller="Home" asp-route-id="@product.Id" class="btn btn-success pull-right btn-outline-info">Deatils</a>
-                    </div>
+<br />
+<br />
+
+<!-- Banner Starts Here -->
+<!-- Page Content -->
+<div class="page-heading products-heading header-text">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="text-content">
+                    <h4>new arrivals</h4>
+                    <h2>sixteen products</h2>
                 </div>
             </div>
         </div>
-    }
+    </div>
 </div>
-<div>
-    @Html.PagedListPager(Model,c=>Href("~/Customer/Home/Index?page="+c),PagedListRenderOptionsBase.PageNumbersOnly)
-</div>
+<!-- Banner Ends Here -->
+
+<div class="products">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="filters">
+                    <ul>
+                        <li class="active" data-filter="*">All Products</li>
+                        <li data-filter=".des">Featured</li>
+                        <li data-filter=".dev">Flash Deals</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="filters-content">
+                    <div class="row grid">
+
+                        @for (int i = 0; i < Model.Count(); i++)
+                        {
+                            @if (i % 2 == 0)
+                            {
+                                <div class="col-lg-4 col-md-4 all des">
+                                    <div class="product-item">
+
+                                        <a asp-action="Detail" asp-controller="Home" asp-route-id="@Model[i].Id">
+
+                                            <div style="height:400px; object-fit:contain; padding:5%;"> <img style="max-height: 380px; " src="@Url.Content("~/"+@Model[i].Image) " alt=""></div>
+                                        </a>
+                                        <div class="down-content">
+                                            <a asp-action="Detail" asp-controller="Home" asp-route-id="@Model[i].Id"><h4>@Model[i].Name</h4></a>
+                                            <h6>GHC @Model[i].Price </h6>
+                                            <p>Lorem ipsume dolor sit amet, adipisicing elite. Itaque, corporis nulla aspernatur.</p>
+                                            <ul class="stars">
+                                                <li><i class="fa fa-star"></i></li>
+                                                <li><i class="fa fa-star"></i></li>
+                                                <li><i class="fa fa-star"></i></li>
+                                                <li><i class="fa fa-star"></i></li>
+                                                <li><i class="fa fa-star"></i></li>
+                                            </ul>
+                                            <span>Reviews (12)</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="col-lg-4 col-md-4 all dev">
+                                    <div class="product-item">
+
+                                        <a asp-action="Detail" asp-controller="Home" asp-route-id="@Model[i].Id">
+
+                                            <div style="height:400px; object-fit:contain; padding:5%;"> <img style="max-height: 380px; " src="@Url.Content("~/"+@Model[i].Image) " alt=""></div>
+                                        </a>
+                                        <div class="down-content">
+                                            <a asp-action="Detail" asp-controller="Home" asp-route-id="@Model[i].Id"><h4>@Model[i].Name</h4></a>
+                                            <h6>GHC @Model[i].Price </h6>
+                                            <p>Lorem ipsume dolor sit amet, adipisicing elite. Itaque, corporis nulla aspernatur.</p>
+                                            <ul class="stars">
+                                                <li><i class="fa fa-star"></i></li>
+                                                <li><i class="fa fa-star"></i></li>
+                                                <li><i class="fa fa-star"></i></li>
+                                                <li><i class="fa fa-star"></i></li>
+                                                <li><i class="fa fa-star"></i></li>
+                                            </ul>
+                                            <span>Reviews (14)</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
 
 
+                        }
+                        @foreach (var product in Model)
+                        {
+
+
+                        }
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <ul class="pages">
+                    <li><a href="#">1</a></li>
+                    <li class="active"><a href="#">2</a></li>
+                    <li><a href="#">3</a></li>
+                    <li><a href="#">4</a></li>
+                    <li><a href="#"><i class="fa fa-angle-double-right"></i></a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--<div class="container">
+    <div class="row">
+        @foreach (var product in Model)
+        {
+            <div class="col-4">
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <h4 class="my-0 font-weight-normal">
+                            <label style="font-size: 23px;color: steelblue">@product.Name</label>
+                        </h4>
+                    </div>
+                    <img src="@Url.Content("~/"+@product.Image) " alt="Card Image" class="card-img-top" style="height: 300px;" />
+                    <div class="card-header">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="btn-group">
+                                <label style="font-size: 20px;color: #a51313"><b>Price : @product.Price</b></label>
+                            </div>
+                            <a asp-action="Detail" asp-controller="Home" asp-route-id="@product.Id" class="btn btn-success pull-right btn-outline-info">Deatils</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+    <div>-->
+        @*@Html.X.PagedListPager(Model,c=>Href("~/Customer/Home/Index?page="+c),PagedListRenderOptionsBase.PageNumbersOnly)*@
+<!--</div>
+</div>-->
